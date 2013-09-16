@@ -39,7 +39,7 @@ export ARCH=arm
 export SUBARCH=arm
 
 echo "**** Make mrproper ****"
-make mrproper
+# make mrproper
 rm -f arch/arm/boot/dts/*.dtb
 rm -f arch/arm/boot/dt.img
 rm -f cwm_flash_zip/boot.img
