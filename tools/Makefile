@@ -22,6 +22,10 @@ help:
 	@echo '  from the kernel command line to build and install one of'
 	@echo '  the tools above'
 	@echo ''
+	@echo '  $$ make tools/all'
+	@echo ''
+	@echo '  builds all tools.'
+	@echo ''
 	@echo '  $$ make tools/install'
 	@echo ''
 	@echo '  installs all tools.'
@@ -35,7 +39,7 @@ help:
 cpupower: FORCE
 	$(call descend,power/$@)
 
-cgroup firewire guest usb virtio vm net: FORCE
+cgroup firewire guest usb virtio vm net mkbootimg mkbootfs dtbtool: FORCE
 	$(call descend,$@)
 
 liblk: FORCE
@@ -49,6 +53,10 @@ selftests: FORCE
 
 turbostat x86_energy_perf_policy: FORCE
 	$(call descend,power/x86/$@)
+
+all: cgroup cpupower firewire lguest \
+		perf selftests turbostat usb \
+		virtio vm net x86_energy_perf_policy
 
 cpupower_install:
 	$(call descend,power/$(@:_install=),install)
@@ -69,7 +77,7 @@ install: cgroup_install cpupower_install firewire_install lguest_install \
 cpupower_clean:
 	$(call descend,power/cpupower,clean)
 
-cgroup_clean firewire_clean lguest_clean usb_clean virtio_clean vm_clean net_clean:
+cgroup_clean firewire_clean lguest_clean usb_clean virtio_clean vm_clean net_clean mkbootimg_clean mkbootfs_clean dtbtool_clean:
 	$(call descend,$(@:_clean=),clean)
 
 liblk_clean:
