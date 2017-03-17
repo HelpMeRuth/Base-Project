@@ -42,6 +42,7 @@ make mrproper
 rm -f arch/arm/boot/dts/*.dtb
 rm -f arch/arm/boot/dt.img
 rm -f cwm_flash_zip/boot.img
+rm -f cwm_flash_zip/*.zip
 
 echo "**** Kernel defconfig is set to $KERNEL_DEFCONFIG ****"
 make $KERNEL_DEFCONFIG
@@ -56,6 +57,7 @@ echo "**** Verify zImage,dtb & wlan ****"
 ls $KERNEL_DIR/arch/arm/boot/zImage
 ls $KERNEL_DIR/arch/arm/boot/dt.img
 ls $KERNEL_DIR/drivers/staging/prima/wlan.ko
+
 
 echo "**** Making kernel_install ****"
 rm -rf kernel_install

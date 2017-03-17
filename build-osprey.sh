@@ -42,6 +42,7 @@ make mrproper
 rm -f arch/arm/boot/dts/*.dtb
 rm -f arch/arm/boot/dt.img
 rm -f cwm_flash_zip/boot.img
+rm -f cwm_flash_zip/*.zip
 
 echo "**** Kernel defconfig is set to $KERNEL_DEFCONFIG ****"
 make $KERNEL_DEFCONFIG
