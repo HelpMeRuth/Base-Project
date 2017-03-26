@@ -4,6 +4,7 @@
 
 set -e
 
+
 KERNEL_DIR=$PWD
 TOOLCHAINDIR=../Toolchain
 ## Place your toolchain in ../Toolchain dir.
@@ -78,7 +79,9 @@ cp arch/arm/boot/dt.img cwm_flash_zip/tools/
 echo "**** Setting Build Number ****"
 NUMBER=$(cat number)
 INCREMENT=$(expr $NUMBER + 1)
-sed -i 's/$NUMBER/$INCREMENT/g' $KERNEL_DIR/number
+echo $INCREMENT > tmp
+cat tmp > number
+rm tmp
 FINAL_KERNEL_ZIP=Lineage-$DEVICE-build$INCREMENT-R$VERSION.zip
 
 ## Make sure we have a map for output zip

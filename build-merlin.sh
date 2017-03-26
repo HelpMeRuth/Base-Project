@@ -23,7 +23,7 @@ fi
 TC=$(ls ../Toolchain/)
 DEVICE=merlin
 KERNEL_TOOLCHAIN=$TOOLCHAINDIR/$TC/bin/arm-eabi-
-KERNEL_DEFCONFIG=($DEVICE)_defconfig
+KERNEL_DEFCONFIG="$DEVICE"_defconfig
 BUILDS=../Builds
 JOBS=8
 ANY_KERNEL2_DIR=$KERNEL_DIR/Anykernel2
@@ -79,7 +79,9 @@ cp arch/arm/boot/dt.img cwm_flash_zip/tools/
 echo "**** Setting Build Number ****"
 NUMBER=$(cat number)
 INCREMENT=$(expr $NUMBER + 1)
-sed -i 's/$NUMBER/$INCREMENT/g' $KERNEL_DIR/number
+echo $INCREMENT > tmp
+cat tmp > number
+rm tmp
 FINAL_KERNEL_ZIP=Lineage-$DEVICE-build$INCREMENT-R$VERSION.zip
 
 ## Make sure we have a map for output zip
