@@ -865,7 +865,7 @@ out:
 	pr_err("%s", buf);
 	BUG();
 #else
-	printk_sched("%s", buf);
+	printk_deferred("%s", buf);
 #endif
 }
 
@@ -898,6 +898,7 @@ static int sched_rt_runtime_exceeded(struct rt_rq *rt_rq)
 
 			if (!once) {
 				once = true;
+                dump_throttled_rt_tasks(rt_rq);
 				printk_deferred("sched: RT throttling activated\n");
 			}
 		} else {
@@ -910,6 +911,7 @@ static int sched_rt_runtime_exceeded(struct rt_rq *rt_rq)
 		}
 
 		if (rt_rq_throttled(rt_rq)) {
+
 			sched_rt_rq_dequeue(rt_rq);
 			return 1;
 		}
