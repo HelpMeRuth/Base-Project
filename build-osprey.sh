@@ -39,7 +39,7 @@ export ARCH=arm
 export SUBARCH=arm
 
 echo "**** Make mrproper ****"
-# make mrproper
+make mrproper
 rm -f arch/arm/boot/dts/*.dtb
 rm -f arch/arm/boot/dt.img
 rm -f cwm_flash_zip/boot.img
@@ -50,8 +50,8 @@ make $KERNEL_DEFCONFIG
 
 # Time for dtb
 echo "**** Building Everything ****"
-make -j$JOBS zImage
-make -j$JOBS dtimage
+make -j$JOBS CONFIG_NO_ERROR_ON_MISMATCH=y zImage
+make -j$JOBS CONFIG_NO_ERROR_ON_MISMATCH=y dtimage
 make -j$JOBS modules
 
 echo "**** Verify zImage,dtb & wlan ****"
