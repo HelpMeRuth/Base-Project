@@ -82,7 +82,7 @@ INCREMENT=$(expr $NUMBER + 1)
 echo $INCREMENT > tmp
 cat tmp > number
 rm tmp
-FINAL_KERNEL_ZIP=Lineage-$DEVICE-build$INCREMENT-R$VERSION.zip
+FINAL_KERNEL_ZIP=Lineage-$DEVICE-build$INCREMENT-R$VERSION-$DATE.zip
 
 ## Make sure we have a map for output zip
 if [ ! -d "$BUILDS" ]
